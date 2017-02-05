@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>C&S Strategy</title>
+	<title>NG Strategy</title>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,11 +9,11 @@
 </head>
 <body class="shower list">
 	<header class="caption">
-		<h1>C&S Strategy</h1>
+		<h1>NG Strategy</h1>
 		<p>Nick Ayers</p>
 	</header>
 	<section class="slide" id="cover">
-		<h2>C&S Strategy</h2>
+		<h2>NG Strategy</h2>
 		<p>Nick Ayers</p>
 		<!--
 			To apply styles to the certain slides
@@ -56,8 +56,48 @@
       All domain objects are public which leads to <strong>high coupling</strong> of services to domain objects.
       There is <strong>high complexity</strong> both functionally and technically.
       High coupling and high complexity leads to a need for end-to-end testing and <strong>long release cycles</strong>.
-      The RTTP framework requires <strong>specialist knowledge</strong> to develop on.
+      The RTTP framework requires <strong>specialist knowledge</strong> to develop and support.
       The application is <strong>not cloud native</strong> in that it parts of it are not easy to scale, it is hard to make resiliant to failure.
+    </p>
+  </section>
+  <section class="slide">
+    <h2>Principals to follow</h2>
+    <ul>
+      <li>Create smaller, loosely coupled applications</li>
+      <li>Follow an event sourcing design</li>
+      <li>Focus on supportability</li>
+    </ul>
+  </section>
+  <section class="slide">
+    <h2>Create smaller applications</h2>
+    <p>
+      The overall complexity of C&S is high. Combined with high coupling this leads to emergent behaviour when we have bugs or system outages. 
+      Break the application into a <strong>handful of smaller, cohesvive applications</strong>. 
+      Integrate these using <strong>well defined interfaces</strong> (Fix, Linuga, SWIFT). 
+      The complexity of each new application is lower so it is easier to understand, requires fewer tests, is less risky to change, <strong>has a shorter time to market</strong>.
+    </p>
+  </section>
+  <section class="slide">
+    <h2>Event sourcing design</h2>
+    <p>
+      Capture immutable events in the order they happen. Having a log events allows us to:
+    <ul>
+      <li>Undo and reprocess events that have been processed incorrectly</li>
+      <li>Create multiple views of state tailored to specific needs</li>
+    </ul>
+    </p>
+  </section>
+  <section class="slide">
+    <h2>Focus on supportability</h2>
+    <p>
+    Accept that any release will contain bugs and we can not anticipate what those bugs will be. For every feature consider <strong>monitoring</strong> - how do we know this is working - and <strong>support</strong> - how can the effect of a bug be reversed?. Effective monitoring helps <strong>identify functional bugs early</strong> before the effect has propogated too far. Support for undoing the effect of a bug and re-playing events must be baked into the application. <strong>Scripting fixes in reponse to incidents</strong> is expensive and <strong>frequently causes other problems</strong>. 
+    </p>
+  </section>
+  <section class="slide">
+    <h2>Why use external standards?</h2>
+    <p>
+      By following well defined external models there is a better chance that our functional boundaries will survive many interations - i.e. less reduce the likelyhood of each application 'bloating'. 
+      Messaging designed for communication between institutions usually needs customisation to add fields required when communicating between systems within an institution.
     </p>
   </section>
   <section class="slide">
@@ -89,6 +129,49 @@
     <p>
       Take a well defined, isolated function of the system - e.g. the <em>Booking Integrity Control</em>.
     </p>
+  </section>
+  <section class="slide">
+    <h2>Innovation</h2>
+    <p>
+      New techniques and technologies that can help us deliver faster.
+    </p>
+    <ul>
+      <li>Building and deploying containers</li>
+      <li>Dyanmic provisioning of database schemas</li>
+      <li>Log file analysis with Splunk</li>
+      <li>data science</li>
+    </ul>
+  </section>
+  <section class="slide">
+    <h2>Containers</h2>
+    <ul>
+      <li>Gives us control of the whole app environment</li>
+      <li>Cloud Foundry PoC</li>
+    </ul>
+  </section>
+  <section class="slide">
+    <h2>Dynamic provisioning of DB schemas</h2>
+    <ul>
+      <li>Easier dev environment setup</li>
+      <li>Scaleable build pipeline</li>
+    </ul>
+  </section>
+  <section class="slide">
+    <h2>Log file analysis</h2>
+    <ul>
+      <li>Aggregate and analyse application log files</li>
+      <li>Make sense of the mass of information</li>
+      <li>Can we anonymise and make available off-shore?</li>
+    </ul>
+  </section>
+  <section class="slide">
+    <h2>Data Science</h2>
+    <ul>
+      <li>Analysis on billing data, late settlements, desktop data</li>
+      <li>Natural language recognition</li>
+      <li>Building log infrastructure</li>
+      <li>Where else can we apply? App logs, break data, etc.</li>
+    </ul>
   </section>
 	<!--
 		To hide progress bar from entire presentation
